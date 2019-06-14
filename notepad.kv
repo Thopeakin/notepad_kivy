@@ -1,0 +1,54 @@
+#: import random random
+<Frame>
+    canvas:
+        Color:
+            rgba: 0.6, 0.6, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    orientation: 'vertical'
+    Label:
+        size_hint_y: None
+        text: root.theText
+        font_size: 20
+        height: 30
+    TextInput:
+        id: text
+        size: root.size
+        pos_hint: {'x': 0.015}
+    FloatLayout:
+        size_hint_y: None
+        height: 50
+        Button:
+            text: 'Save'
+            color: 0, 1, 0, 1
+            size_hint: None, None
+            font_size: 40
+            size: 90, 50
+            pos_hint: {'x': 0.1}
+            on_release: root.save()
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            width: 280
+            height: 45
+            pos: root.width/2 - self.width/2, 3
+            TextInput:
+                hint_text: 'Filename.txt'
+                width: 260
+                size_hint: None, None
+                id: save
+                height: 30
+                on_text: self.color = [random.random() for i in range(3)] + [1]
+            Label:
+                color: 1, 0, 0, 1
+                pos: 300 ,5
+                id: error
+        Button:
+            text: 'Exit'
+            color: 1, 0, 0, 1
+            size_hint: None, None
+            font_size: 40
+            on_release: exit()
+            size: 90, 50
+            pos_hint: {'x': 0.8}
